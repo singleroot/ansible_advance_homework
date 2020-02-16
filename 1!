@@ -1,6 +1,6 @@
-- name: Create project Homework
+- name: Create project {{proj_name}}
   command: |
-    tower-cli project create --name "{{proj_name}}" --scm-type git --scm-url "{{github_repo}}" --wait
+    tower-cli project create --name="{{proj_name}}" --scm-type=git --scm-url="{{github_repo}}" --wait
 
 - name: Job template for OSP Instances
   command: |
@@ -8,7 +8,7 @@
 
 - name: Associate IG to OSP instances job template 
   command: |
-    tower-cli job_template associate_ig --job-template "{{job_template_name_osp_instances}}" --instance-group "{{instance_group_name}}"
+    tower-cli job_template associate_ig --job_template "{{job_template_name_osp_instances}}" --instance_group "{{instance_group_name}}"
 
 
 - name: Create vault credential
@@ -21,7 +21,7 @@
 
 - name: Associate IG to 3tier job template  
   command: |
-    tower-cli job_template associate_ig --job-template "{{job_template_name_3tier_app}}" --instance-group "{{instance_group_name}}"
+    tower-cli job_template associate_ig --job_template "{{job_template_name_3tier_app}}" --instance_group "{{instance_group_name}}"
 
 
 - name: Job template to delete OSP Instances
@@ -30,7 +30,7 @@
 
 - name: Associate IG to OSP Delete instances job template 
   command: |
-    tower-cli job_template associate_ig --job-template "{{job_template_name_osp_instances_delete}}" --instance-group "{{instance_group_name}}"
+    tower-cli job_template associate_ig --job_template "{{job_template_name_osp_instances_delete}}" --instance_group "{{instance_group_name}}"
 
 
 - name: Job template for smoke test osp instances
@@ -39,7 +39,7 @@
 
 - name: Associate IG to Smoke test job template 
   command: |
-    tower-cli job_template associate_ig --job-template "{{job_template_smoke_osp}}" --instance-group "{{instance_group_name}}"
+    tower-cli job_template associate_ig --job_template "{{job_template_smoke_osp}}" --instance_group "{{instance_group_name}}"
 
 - name: Job template for Provisioning AWS env
   command: |
