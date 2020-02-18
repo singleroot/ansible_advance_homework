@@ -1,4 +1,31 @@
-- hosts: workstation
+- hosts: localhost
+  connection: local
   become: yes
-  roles:
-    - osp-servers
+  tasks:
+##Create FrontEnd Instance
+  - name: Create frontend instance
+    include_role:
+       name: osp-servers
+       vars_from: frontend.yml
+###Create App1 server 
+  - name: Create app1 instance
+    include_role:
+       name: osp-servers
+       vars_from: app1.yml
+##Create App2 server
+  - name: Create app2 instance
+    include_role:
+       name: osp-servers
+       vars_from: app2.yml
+##Create DB server
+  - name: Create db instance
+    include_role:
+       name: osp-servers
+       vars_from: db.yml
+
+#  roles:
+#    - osp-servers
+#- hosts: workstation
+#  become: yes
+#  roles:
+#    - osp-servers

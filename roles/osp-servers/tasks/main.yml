@@ -5,11 +5,11 @@
   os_server:
     cloud: ospcloud
     name: "{{ instance_name }}"
-    image: rhel-guest
-    meta: "group={{ group }},deployment_name={{ deployment }}"
-    flavor: m2.small
-    security_groups: "{{ security_group_name }}"
-    key_name: ansible_ssh
+    image: "{{ image }}"
+    meta: "group={{ group }},deployment_name={{ deployment_name }}"
+    flavor: "{{ flavor  }}"
+    security_groups: "{{ security_group }}"
+    key_name: "{{ key_name }}"
     wait: yes
     nics:
     - net-name: int_network
@@ -24,7 +24,7 @@
 - name: Add floating IP to Servers
   os_floating_ip:
     cloud: ospcloud
-    state: present
+    state: "{{ state }}"
     reuse: yes
     server: "{{ instance_name }}"
     network: ext_network
