@@ -1,6 +1,6 @@
-#- hosts: workstation
-- hosts: localhost
-  connection: local
+- hosts: workstation
+- hosts: workstation
+  #connection: local
   gather_facts: true
   roles:
   - name: osp-facts
