@@ -1,5 +1,6 @@
 ---
 # vars file for lb-tier
+# The packages that will be installed using YUM
 _yum_packages:
 - haproxy
 - python2-httpie

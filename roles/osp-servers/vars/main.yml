@@ -1,7 +1,8 @@
 ---
 # vars file for osp.servers
+# Actually this file is not used, instead each instance have its own file...... will improve this later
 osp_servers:
-  frontend:
+  frontend: # To crate the frontend instance
     instance_name: frontend
     state: present
     image: rhel-guest
@@ -10,7 +11,7 @@ osp_servers:
     security_group: frontend
     meta:
       - { group: frontends, deployment_name: QA}
-  app1:
+  app1: # To crate the app1 instance
     instance_name: app1
     state: present
     image: rhel-guest

@@ -6,7 +6,7 @@
     cloud: ospcloud
     name: "{{ instance_name }}"
     image: "{{ image }}"
-    meta: "group={{ group }},deployment_name={{ deployment_name }}"
+    meta: "group={{ group }},deployment_name={{ deployment_name }}" #works better this way to add the meta data
     flavor: "{{ flavor  }}"
     security_groups: "{{ security_group }}"
     key_name: "{{ key_name }}"

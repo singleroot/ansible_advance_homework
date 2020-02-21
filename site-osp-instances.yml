@@ -22,7 +22,7 @@
     include_role:
        name: osp-servers
        vars_from: db.yml
-
+# Old code, to call the main var file but I prefer the option before that calls each indepedent file
 #  roles:
 #    - osp-servers
 #- hosts: workstation

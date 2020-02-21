@@ -1,5 +1,11 @@
-- hosts: frontends
+- hosts: localhost # changed to localhost in order to just run the smoke test of public access
   gather_facts: false
   tasks:
   - name: Use Uri module for wrting smoke test.
-  - name: Fail if 'Ansible has done its job' is not in the page content
+    action: uri url=http://frontend1.{{ ANSIBLE_ADVANCE_GUID }}.example.opentlc.com return_content=yes # Doing the URI test and getting the content of the webpage if any
+    register: webpage
+
+  - name: Fail if 'Ansible' is not in the page content 
+    fail:
+        msg: 'The Http server is not working, check connectivity or if service is running' # This will show if the word 'Ansible' not in the contect
+    when: "'Ansible' not in webpage.content" # Yap, its a success

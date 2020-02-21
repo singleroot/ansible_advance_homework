@@ -17,16 +17,17 @@
     fail:
     when: "'Ansible' not in webpage.results[0].stdout" 
 
-  
-- hosts: localhost
-  gather_facts: false
-  tasks:
-  - name: Curl website
-    command: curl "http://frontend1.{{ ANSIBLE_ADVANCE_GUID }}.example.opentlc.com"
-    register: webpage
-  - debug: var=webpage.stdout
-  - name: Fail
-    fail:
-    when: "'Ansible' not in webpage.stdout" 
-  - name: Success
-    debug: msg="Congrats Yours HW Assignment is completed"
+#This part test the PROD ENV, so docummented as not needed here 
+ 
+#- hosts: localhost
+#  gather_facts: false
+#  tasks:
+#  - name: Curl website
+#    command: curl "http://frontend1.{{ ANSIBLE_ADVANCE_GUID }}.example.opentlc.com"
+#    register: webpage
+#  - debug: var=webpage.stdout
+#  - name: Fail
+#    fail:
+#    when: "'Ansible' not in webpage.stdout" 
+#  - name: Success
+#    debug: msg="Congrats Yours HW Assignment is completed"
