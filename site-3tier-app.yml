@@ -1,5 +1,4 @@
 - hosts: workstation
-- hosts: workstation
   #connection: local
   gather_facts: true
   roles:

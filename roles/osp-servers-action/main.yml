@@ -1,0 +1,16 @@
+---
+#A simple playbook to start/stop/pause/unpause/lock/unlock/suspend/resume/rebuild instances located at certain openstack cloud
+- hosts: workstation
+  become: yes
+  tasks:
+  - name: Execution action on instance
+    os_server_action:
+       action: "{{ACTION_CMD}}"
+       timeout: 200
+       cloud: "{{INSTANCE_CLOUD}}"
+       server: "{{ item }}"
+    loop:
+       - app1
+       - app2
+       - db
+       - frontend
