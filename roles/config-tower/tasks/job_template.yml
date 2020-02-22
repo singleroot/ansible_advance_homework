@@ -1,6 +1,6 @@
-- name: Create project Homework
+- name: Create project "{{proj_name}}"
   command: |
-    tower-cli project create --name "{{proj_name}}" --scm-type git --scm-url "{{github_repo}}" --wait
+    tower-cli project create --name="{{proj_name}}" --scm-type=git --scm-url="{{github_repo}}" --wait
 
 - name: Job template for OSP Instances
   command: |
