@@ -5,7 +5,8 @@
   - name: Use Uri module for wrting smoke test.
     action: uri url=http://frontend1.{{ ANSIBLE_ADVANCE_GUID }}.example.opentlc.com return_content=yes # Doing the URI test and getting the content of the webpage if any
     register: webpage
-
+  - debug:
+      msg: "{{ webpage['content'] }}"
   - name: Fail if 'Ansible' is not in the page content 
     fail:
         msg: 'The Http server is not working, check connectivity or if service is running' # This will show if the word 'Ansible' not in the contect
