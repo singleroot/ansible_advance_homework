@@ -1,4 +1,5 @@
-- hosts: localhost # changed to localhost in order to just run the smoke test of public access
+- hosts: frontends
+#- hosts: localhost # changed to localhost in order to just run the smoke test of public access
   gather_facts: false
   tasks:
   - name: Use Uri module for wrting smoke test.
