@@ -13,6 +13,8 @@
     with_items:
        - "{{ openstack_info.ansible_facts.openstack_servers }}"
     register: webpage
+  - debug:
+      msg: "{{ webpage['content'] }}"
   - name: Fail
     fail:
     when: "'Ansible' not in webpage.results[0].stdout" 
