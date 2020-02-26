@@ -1,4 +1,5 @@
 - hosts: tag_AnsibleGroup_bastions
+#- hosts: bastionaws
   gather_facts: true
   become: true
   tasks:
@@ -7,6 +8,7 @@
      name: "{{item}}"
      state: latest 
     loop: 
+      - deltarpm
       - python 
       - python-pip 
       - python-devel 
@@ -17,7 +19,19 @@
      state: latest
   - name: List key files
     shell: (cd /root/.ssh; find . -maxdepth 1 -type f -iname '*key.pem')| cut -d'/' -f2
+    #shell: (cd /root/.ssh; find . -maxdepth 1 -type f -iname '*key.pem')
+    changed_when: false
     register: file_to_copy
+  - set_fact:
+        rsa_file: " /root/.ssh/{{ file_to_copy.stdout  }}"
+  - debug:
+        msg: "The file is: - {{ rsa_file }}"
+    #loop: '{{ file_to_copy["results"] }}'
+  - name: get Key
+    slurp:
+      #src: /root/.ssh/{{ file_to_copy.stdout_lines }}
+      src: "{{ rsa_file }}"
+    register: keyfile 
   - name: Tower Creds key file
     tower_credential:
       name: Creds for AWS instances
@@ -28,7 +42,8 @@
       tower_username: admin
       tower_password: r3dh4t1!
       tower_verify_ssl: no
-      ssh_key_data: "/root/.ssh/{{ file_to_copy.stdout }}"
+      ssh_key_data: "{{ keyfile['content'] |b64decode }}"
+      #ssh_key_data: "/root/.ssh/{{ file_to_copy.stdout }}"
       username: ec2-user
   - name: Update Prod Job template
     tower_job_template:
