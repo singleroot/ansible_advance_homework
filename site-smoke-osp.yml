@@ -14,7 +14,7 @@
        - "{{ openstack_info.ansible_facts.openstack_servers }}"
     register: webpage
   - debug:
-      msg: "{{ webpage['content'] }}"
+      msg: "{{ webpage.results[0].stdout }}"
   - name: Fail
     fail:
     when: "'Ansible' not in webpage.results[0].stdout" 

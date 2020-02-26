@@ -1,6 +1,6 @@
 ---
-#- hosts: workstation
-- hosts: localhost
+- hosts: workstation
+#- hosts: localhost
   become: true
   gather_facts: false
   tasks:
